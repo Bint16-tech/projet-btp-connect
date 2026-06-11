@@ -2,11 +2,14 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AppTabParamList } from './types';
 import HomeScreen from '../screens/app/HomeScreen';
-import JobsScreen from '../screens/app/JobsScreen';
-import MessagesScreen from '../screens/app/MessagesScreen';
+import InventoryScreen from '../screens/app/InventoryScreen';
+import MarketplaceScreen from '../screens/app/MarketplaceScreen';
 import ProfileScreen from '../screens/app/ProfileScreen';
-import { Home, Briefcase, MessageSquare, User } from 'lucide-react-native';
+import { Home, Package, ShoppingBag, User, Recycle } from 'lucide-react-native';
 import { COLORS } from '../theme/colors';
+import EvacuationScreen from '../screens/app/EvacuationScreen';
+
+// Dans le Tab.Navigator
 
 const Tab = createBottomTabNavigator<AppTabParamList>();
 
@@ -20,6 +23,11 @@ export default function TabNavigator() {
         tabBarStyle: {
           paddingBottom: 5,
           height: 60,
+          backgroundColor: COLORS.black,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '500',
         },
       }}
     >
@@ -32,21 +40,30 @@ export default function TabNavigator() {
         }}
       />
       <Tab.Screen 
-        name="Jobs" 
-        component={JobsScreen} 
+        name="Inventory" 
+        component={InventoryScreen} 
         options={{
-          tabBarLabel: 'Emplois',
-          tabBarIcon: ({ color, size }) => <Briefcase color={color} size={size} />,
+          tabBarLabel: 'Inventaire',
+          tabBarIcon: ({ color, size }) => <Package color={color} size={size} />,
         }}
       />
       <Tab.Screen 
-        name="Messages" 
-        component={MessagesScreen} 
+        name="Marketplace" 
+        component={MarketplaceScreen} 
         options={{
-          tabBarLabel: 'Messages',
-          tabBarIcon: ({ color, size }) => <MessageSquare color={color} size={size} />,
+          tabBarLabel: 'Marketplace',
+          tabBarIcon: ({ color, size }) => <ShoppingBag color={color} size={size} />,
         }}
       />
+      <Tab.Screen 
+        name="Evacuation" 
+        component={EvacuationScreen}
+        options={{
+          tabBarLabel: 'KÔRYLÉ',
+          tabBarIcon: ({ color, size }) => <Recycle color={color} size={size} />,
+        }}
+      />
+      
       <Tab.Screen 
         name="Profile" 
         component={ProfileScreen} 

@@ -3,12 +3,14 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 export type AuthStackParamList = {
   Login: undefined;
   Register: undefined;
+  ProfileSelection: undefined;
 };
 
 export type AppTabParamList = {
   Home: undefined;
-  Jobs: undefined;
-  Messages: undefined;
+  Inventory: undefined;
+  Marketplace: undefined;
+  Evacuation: undefined;  // Ajoutez cette ligne
   Profile: undefined;
 };
 
