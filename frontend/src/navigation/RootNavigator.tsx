@@ -9,7 +9,7 @@ import { COLORS } from '../theme/colors';
 export default function RootNavigator() {
   const { isAuthenticated, isLoading } = useAuth();
 
-  if (isLoading) {
+  if (isLoading) { 
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator size="large" color={COLORS.orange} />
