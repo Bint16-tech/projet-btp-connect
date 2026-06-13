@@ -1,52 +1,99 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, ScrollView, StyleSheet } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthStackParamList } from '../../navigation/types';
+import { COLORS } from '../../theme/colors';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Register'>;
 
 export default function RegisterScreen({ navigation }: Props) {
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }} className="bg-white px-6 py-12">
-      <Text className="text-btp-black text-3xl font-[Montserrat_700Bold] mb-2">Créer un compte</Text>
-      <Text className="text-gray-500 mb-8">Inscrivez-vous pour rejoindre BTP Connect</Text>
-      
-      <TextInput 
-        className="bg-gray-100 p-4 rounded-xl mb-4"
-        placeholder="Nom complet"
-      />
-      
-      <TextInput 
-        className="bg-gray-100 p-4 rounded-xl mb-4"
+    <ScrollView style={styles.container} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+      <Text style={styles.title}>Créer un compte</Text>
+      <Text style={styles.subtitle}>Inscrivez-vous pour rejoindre BTP Connect.</Text>
+
+      <TextInput style={styles.input} placeholder="Nom complet" placeholderTextColor={COLORS.textSoft} />
+      <TextInput
+        style={styles.input}
         placeholder="Email"
+        placeholderTextColor={COLORS.textSoft}
         keyboardType="email-address"
         autoCapitalize="none"
       />
-      
-      <TextInput 
-        className="bg-gray-100 p-4 rounded-xl mb-4"
-        placeholder="Mot de passe"
-        secureTextEntry
-      />
+      <TextInput style={styles.input} placeholder="Mot de passe" placeholderTextColor={COLORS.textSoft} secureTextEntry />
+      <TextInput style={styles.input} placeholder="Confirmer le mot de passe" placeholderTextColor={COLORS.textSoft} secureTextEntry />
 
-      <TextInput 
-        className="bg-gray-100 p-4 rounded-xl mb-6"
-        placeholder="Confirmer le mot de passe"
-        secureTextEntry
-      />
-      
-      <TouchableOpacity 
-        className="bg-btp-orange p-4 rounded-xl items-center"
-      >
-        <Text className="text-white font-bold text-lg">S'inscrire</Text>
+      <TouchableOpacity style={styles.primaryButton}>
+        <Text style={styles.primaryButtonText}>S'inscrire</Text>
       </TouchableOpacity>
-      
-      <View className="flex-row justify-center mt-6 mb-10">
-        <Text className="text-gray-600">Déjà un compte ? </Text>
+
+      <View style={styles.footerRow}>
+        <Text style={styles.footerText}>Déjà un compte ? </Text>
         <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text className="text-btp-orange font-bold">Se connecter</Text>
+          <Text style={styles.footerLink}>Se connecter</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.background,
+  },
+  content: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    padding: 24,
+  },
+  title: {
+    color: COLORS.text,
+    fontFamily: 'Montserrat_700Bold',
+    fontSize: 30,
+    marginBottom: 8,
+  },
+  subtitle: {
+    color: COLORS.textMuted,
+    fontFamily: 'Montserrat_400Regular',
+    marginBottom: 26,
+  },
+  input: {
+    height: 54,
+    backgroundColor: COLORS.surface,
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    marginBottom: 12,
+    color: COLORS.text,
+    fontFamily: 'Montserrat_400Regular',
+    borderWidth: 1,
+    borderColor: COLORS.border,
+  },
+  primaryButton: {
+    height: 54,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.orange,
+    marginTop: 8,
+  },
+  primaryButtonText: {
+    color: COLORS.white,
+    fontFamily: 'Montserrat_700Bold',
+    fontSize: 16,
+  },
+  footerRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 22,
+    marginBottom: 24,
+  },
+  footerText: {
+    color: COLORS.textMuted,
+    fontFamily: 'Montserrat_400Regular',
+  },
+  footerLink: {
+    color: COLORS.orange,
+    fontFamily: 'Montserrat_700Bold',
+  },
+});

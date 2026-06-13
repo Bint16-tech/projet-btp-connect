@@ -10,11 +10,16 @@ export type AppTabParamList = {
   Home: undefined;
   Inventory: undefined;
   Marketplace: undefined;
-  Evacuation: undefined;  // Ajoutez cette ligne
+  Evacuation: undefined;
   Profile: undefined;
 };
 
 export type RootStackParamList = {
   Auth: NavigatorScreenParams<AuthStackParamList>;
   App: NavigatorScreenParams<AppTabParamList>;
+};
+
+export type AppStackParamList = {
+  Tabs: NavigatorScreenParams<AppTabParamList> | undefined;
+  ProjectDashboard: { projectName: string };
 };
